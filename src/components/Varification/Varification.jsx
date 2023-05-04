@@ -21,7 +21,9 @@ const handelChange=(e)=>{
 const verify = () => {
   const { username, pin } = user
   if (username && pin.length===6) {
-    axios.post("http://localhost:8005/verify", user)
+    // axios.post("http://localhost:8005/verify", user)
+    axios.post("https://registration-login-reactjs-nodejs-mongodb.onrender.com/verify", user)
+
       .then(res => {
         alert("Verify Successfully");
         if(res.data==="Sign in Successfully"){

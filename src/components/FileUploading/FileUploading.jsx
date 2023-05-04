@@ -16,8 +16,10 @@ const FileUploading = () => {
         for (const keys of Object.keys(files)) {
             form.append("images", files[keys])
         }
-        axios.post('http://localhost:8005/fileuploading', form)
-            .then(res => console.log(res.data))
+        // axios.post('http://localhost:8005/fileuploading', form)
+        axios.post('https://registration-login-reactjs-nodejs-mongodb.onrender.com/fileuploading', form)
+
+            .then(res => alert(res.data))
             .catch(err => console.log(err))
     };
     return (

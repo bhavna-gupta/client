@@ -9,7 +9,9 @@ const DisplayImages = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:8005/fileuploading')
+        // axios.get('http://localhost:8005/fileuploading')
+        axios.get('https://registration-login-reactjs-nodejs-mongodb.onrender.com/fileuploading')
+
             .then((res) => setData(res.data))
             .catch((err) => console.log(err))
     }, [])

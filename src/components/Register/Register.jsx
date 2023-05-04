@@ -21,7 +21,9 @@ const Register = () => {
   const register = () => {
     const { username, password, pin } = user
     if (username && password.length===8 && pin.length===6) {
-      axios.post("http://localhost:8005/signup", user)
+      // axios.post("http://localhost:8005/signup", user)
+      axios.post("https://registration-login-reactjs-nodejs-mongodb.onrender.com/signup", user)
+
         .then(res => {
           alert(res.data);
           navigate("/login");
