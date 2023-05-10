@@ -9,12 +9,12 @@ const PageRoutes=()=>{
     return(
         <>
         <Routes>
-            <Route path="/home" element={<Home />}/>
-            <Route path="/" element={<Login/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/verify" element={<Varification/>}/>
-            <Route path="/displayimage" element={<DisplayImages/>}/>
+            <Route path="/home" element={<Home url={process.env.REACT_APP_BACKEND_SERVER}/>}/>
+            <Route path="/" element={<Login url={process.env.REACT_APP_BACKEND_SERVER}/>}/>
+            <Route path="/login" element={<Login url={process.env.REACT_APP_BACKEND_SERVER}/>}/>
+            <Route path="/register" element={<Register url={process.env.REACT_APP_BACKEND_SERVER}/>}/>
+            <Route path="/verify" element={<Varification url={process.env.REACT_APP_BACKEND_SERVER}/>}/>
+            <Route path="/displayimage" element={<DisplayImages url={process.env.REACT_APP_BACKEND_SERVER}/>}/>
 
         </Routes>
         </>

@@ -1,52 +1,39 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
 
 
 // import { btoa } from "btoa-atob";
-const DisplayImages = () => {
+const DisplayImages = ({url}) => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     useEffect(() => {
-        // axios.get('http://localhost:8005/fileuploading')
-        axios.get('https://registration-login-reactjs-nodejs-mongodb.onrender.com/fileuploading')
+        
+        axios.get(`${url}/fileuploading`)
 
             .then((res) => setData(res.data))
             .catch((err) => console.log(err))
-    }, [])
+    }, [url])
 
 
-    const show = () => {
-        axios.get('http://localhost:8005/fileuploading')
-            .then((res) => setData(res.data))
-            .catch((err) => console.log(err))
-    }
-
-    const Download = (value) => {
-        saveAs(`data:image/png;base64,${btoa(String.fromCharCode(new Uint8Array(value.data)))} `)
-    }
     return (
         <>
             <div >
-                {/* <button onClick={show}>Show</button> */}
-                {data && data.map(item => {
-                    {console.log(item.image.data.data)}
-                    // const base64String = btoa(
-                    //     String.fromCharCode(...new Uint8Array(item.image.data.data))
-                    // );
+              
+                {data.length>0 && data.map((item,index) => {
+                   
                     return (
-                        <>
-                            {/* <img src={`data:image/png;base64,${base64String} `} /> */}
-                            <img src={item.image} alt="img"/>
+                        <div key={index}>
+                         
+                            <img src={`${url}/fileuploading/${item.filename}`} alt="img" width={100}/>
 
                             <li style={{ display: "flex", justifyContent: "space-between", marginBottom: "5px" }}>
                                 <label>{item.filename}</label>
 
 
-                                <button onClick={() => Download(item.image)}>Download</button>
+                                <button ><a href={`${url}/fileuploading/${item.filename}`} download style={{textDecoration:"none",color:"black"}}>Download</a></button>
                             </li>
-                        </>
+                        </div>
                     )
                 })}
                 <button style={{ marginLeft: "40%" }} variant="primary" onClick={() => { navigate("/login") }}>

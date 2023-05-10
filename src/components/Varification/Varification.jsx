@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 
-const Login=()=> {
+const Login=({url})=> {
 
   const navigate = useNavigate();
     const[user,setUser]=useState({
@@ -21,8 +21,8 @@ const handelChange=(e)=>{
 const verify = () => {
   const { username, pin } = user
   if (username && pin.length===6) {
-    // axios.post("http://localhost:8005/verify", user)
-    axios.post("https://registration-login-reactjs-nodejs-mongodb.onrender.com/verify", user)
+    
+    axios.post(`${url}/verify`, user)
 
       .then(res => {
         alert("Verify Successfully");

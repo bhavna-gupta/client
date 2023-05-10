@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const FileUploading = () => {
+const FileUploading = ({url}) => {
     const [files, setFiles] = useState(null);
   const navigate = useNavigate();
 
@@ -16,8 +16,8 @@ const FileUploading = () => {
         for (const keys of Object.keys(files)) {
             form.append("images", files[keys])
         }
-        // axios.post('http://localhost:8005/fileuploading', form)
-        axios.post('https://registration-login-reactjs-nodejs-mongodb.onrender.com/fileuploading', form)
+    
+        axios.post(`${url}/fileuploading`, form)
 
             .then(res => alert(res.data))
             .catch(err => console.log(err))

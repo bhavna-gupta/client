@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-const Register = () => {
+const Register = ({url}) => {
   const navigate=useNavigate();
   const [user, setUser] = useState({
     username: "",
@@ -21,8 +21,8 @@ const Register = () => {
   const register = () => {
     const { username, password, pin } = user
     if (username && password.length===8 && pin.length===6) {
-      // axios.post("http://localhost:8005/signup", user)
-      axios.post("https://registration-login-reactjs-nodejs-mongodb.onrender.com/signup", user)
+      
+      axios.post(`${url}/signup`, user)
 
         .then(res => {
           alert(res.data);
@@ -40,7 +40,7 @@ const Register = () => {
       width: "500px",
       margin: "25px 30%"
     }}>
-      {console.log("User", user)}
+      
       <h1 style={{ textAlign: "center" }}>Register</h1>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
